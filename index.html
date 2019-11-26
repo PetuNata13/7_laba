@@ -1,0 +1,172 @@
+<!doctype html>
+<head>
+        <meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*Практическое задание 4*/
+    console.log('Практическое задание 4');
+
+    /*1:*/
+    console.log('№1');
+
+    function numberToObj(num) {
+        let obj = {};
+        if (num < 1 || num > 999) {
+            console.log("Превышающее значение" + obj)
+        } else {
+            obj["единицы"] = num % 10;
+            obj["десятки"] = (num - obj["единицы"]) % 100 / 10;
+            obj["сотни"] = (num - obj["единицы"] - obj["десятки"] * 10) % 1000 / 100;
+        }
+        console.log(obj)
+    }
+    numberToObj(562);
+
+    /*2:*/
+    console.log('№2');
+    let product = [
+        {name: "Bike Foxx", price: 16000},
+        {name: "Bike Stels", price: 12000},
+        {name: "Bike Forword", price: 11000},
+        {name: "Bike Stinger", price: 13000},
+    ];
+    let Basket = {
+        goodList: [],
+        countTotalPrice: function () {
+            let sum = 0;
+            for (let i in this.goodList) {
+                sum += this.goodList[i].price
+            }
+            return sum;
+        },
+        countTotalNumber: function () {
+            return this.goodList.length
+        },
+        putProduct: function (product) {
+            for (let i in product) {
+                if (i % 2 === 0) {
+                    product[i].count = 2
+                    //this.goodList.push(product[i], {count: 2})
+                } else {
+                    product[i].count = 1;
+                    //this.goodList.push(product[i], {count: 1});
+                }
+                this.goodList.push(product[i]);
+            }
+        },
+        generation: function () {
+            let basketBlock = document.getElementById('basket');
+            if (this.goodList.countTotalNumber = 0) {
+
+                console.log("Корзина пуста")
+            } else {
+                console.log("Корзина не пуста")
+            }
+        }
+    };
+    Basket.putProduct(product)
+    console.log(Basket)
+    console.log("Общая стоимоcть корзины: " + Basket.countTotalPrice());
+    console.log("Товаров в корзине: " + Basket.countTotalNumber())
+    Basket.generation()
+
+
+    /*Практическое задание 5*/
+    /*1:*/
+
+    function chessboard1() {
+        let newTable = document.createElement('table'),
+            lets = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ''],
+            blackFigs1 = ['8', '&#9820;', '&#9822;', '&#9821;', '&#9819;', '&#9818;', '&#9821;', '&#9822;', '&#9820;', '8'],
+            whiteFigs1 = ['1', '&#9814;', '&#9816;', '&#9815;', '&#9813;', '&#9812;', '&#9815;', '&#9816;', '&#9814;', '1'],
+            blackFigs2 = ['7', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '7'],
+            whiteFigs2 = ['2', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '2'];
+        for (let i = 0, a = 9; i < 10, a >= 0; i++, a--) {
+            let newTr = newTable.insertRow(i);
+            for (let j = 0; j < 10; j++) {
+                let newTd = newTr.insertCell(j);
+                switch (i) {
+                    case 0:
+                        newTd.innerText = lets[j];
+                        break;
+                    case 1:
+                        newTd.innerHTML = blackFigs1[j];
+                        break;
+                    case 2:
+                        newTd.innerHTML = blackFigs2[j];
+                        break;
+                    case 7:
+                        newTd.innerHTML = whiteFigs2[j];
+                        break;
+                    case 8:
+                        newTd.innerHTML = whiteFigs1[j];
+                        break;
+                    case 9:
+                        newTd.innerText = lets[j];
+                        break;
+                    default:
+                        if (j === 0 || j === 9) {
+                            newTd.innerHTML = a;
+                        }
+                        break;
+                }
+            }
+        }
+        document.body.appendChild(newTable);
+    };
+    chessboard1();
+</script>
+
+
+<style>
+    table {
+        font-family: Impact, sans-serif;
+        font-size: 30px;
+        background-color: white;
+        color: black;
+    }
+
+    td {
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    tr:nth-child(even) td:nth-child(odd) {
+        background-color: grey;
+    }
+
+    tr:nth-child(odd) td:nth-child(even) {
+        background-color: grey;
+    }
+
+    tr:last-child td:nth-child(odd),
+    tr:first-child td:nth-child(even) {
+        background-color: azure;
+    }
+
+    tr:nth-child(even) td:first-child {
+        background-color: azure;
+    }
+
+    tr:nth-child(odd) td:last-child {
+        background-color: azure;
+    }
+
+    .wrap-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .wrap-column {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+</style>
+</body>
